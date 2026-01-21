@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class RecommendationSystem {
+
+    public static void main(String[] args) {
+
+        // Sample product data
+        Map<String, List<String>> data = new HashMap<>();
+        data.put("Technology", Arrays.asList("Java Programming Book", "Laptop", "AI Course"));
+        data.put("Fashion", Arrays.asList("T-Shirt", "Jeans", "Sneakers"));
+        data.put("Fitness", Arrays.asList("Yoga Mat", "Dumbbells", "Protein Powder"));
+        data.put("Education", Arrays.asList("Online Courses", "Reference Books", "Notebook"));
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter your interest:");
+        System.out.println("Technology | Fashion | Fitness | Education");
+        String interest = sc.nextLine();
+
+        System.out.println("\nRecommended Items:");
+
+        if (data.containsKey(interest)) {
+            for (String item : data.get(interest)) {
+                System.out.println("- " + item);
+            }
+        } else {
+            System.out.println("No recommendations available.");
+        }
+    }
+}
