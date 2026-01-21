@@ -1,0 +1,38 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class RestApiClient {
+
+    public static void main(String[] args) {
+        try {
+            // API URL
+            URL url = new URL("https://jsonplaceholder.typicode.com/users");
+
+            // Create HTTP connection
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            // Read response
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream()));
+
+            String line;
+            StringBuilder response = new StringBuilder();
+
+            while ((line = br.readLine()) != null) {
+                response.append(line);
+            }
+
+            br.close();
+
+            // Display JSON data
+            System.out.println("API Response:\n");
+            System.out.println(response.toString());
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
